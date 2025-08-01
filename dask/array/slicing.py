@@ -626,12 +626,15 @@ def take(outname, inname, chunks, index, axis=0):
         for i in range(0, len(index), average_chunk_size):
             indexer.append(index[i : i + average_chunk_size].tolist())
 
+        print("indexer:", indexer)
+
         token = (
             outname.split("-")[-1]
             if "-" in outname
             else tokenize(outname, chunks, index, axis)
         )
         chunks, graph = _shuffle(chunks, indexer, axis, inname, outname, token)
+        print(chunks)
         return chunks, graph
     elif len(chunks[axis]) == 1:
         slices = [slice(None)] * len(chunks)
