@@ -10,7 +10,7 @@ defaults:
 jobs:
   doctest:
     runs-on: "ubuntu-latest"
-    if: false()
+    if: false
     timeout-minutes: 90
     steps:
       - name: Checkout source
