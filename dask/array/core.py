@@ -2025,9 +2025,7 @@ class Array(DaskMethodsMixin):
             slice_with_int_dask_array,
         )
 
-        print("index:", index)
         index2 = normalize_index(index, self.shape)
-        print("index2:", index2)
         dependencies = {self.name}
         for i in index2:
             if isinstance(i, Array):
