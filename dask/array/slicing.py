@@ -604,7 +604,7 @@ def take(outname, inname, chunks, index, axis=0):
         from dask.array.utils import arange_safe, asarray_safe
 
         # verify if this is a full arange (the equivalent of `slice(None)`)
-        full_length = sum(chunks[axis])
+        full_length = int(sum(chunks[axis]))
         if (
             len(index) == full_length
             and index[0] == 0
