@@ -74,16 +74,24 @@ jobs:
           distribution: "zulu"
           java-version: "11"
 
-      - name: Setup Conda Environment
-        uses: conda-incubator/setup-miniconda@v3.2.0
+      - name: Setup micromamba
+        uses: mamba-org/setup-micromamba@v2
         with:
-          miniforge-version: latest
-          use-mamba: true
-          channel-priority: strict
           environment-file: continuous_integration/environment-${{ matrix.environment }}.yaml
-          activate-environment: test-environment
-          auto-activate-base: false
-          run-post: ${{ matrix.os != 'windows-latest' }}
+          cache-environment: true
+          post-cleanup: 'all'
+          init-shell: >-
+            bash
+      # - name: Setup Conda Environment
+      #   uses: conda-incubator/setup-miniconda@v3.2.0
+      #   with:
+      #     miniforge-version: latest
+      #     use-mamba: true
+      #     channel-priority: strict
+      #     environment-file: continuous_integration/environment-${{ matrix.environment }}.yaml
+      #     activate-environment: test-environment
+      #     auto-activate-base: false
+      #     run-post: ${{ matrix.os != 'windows-latest' }}
 
       - name: Test pandas nightlies (only with dask-expr)
         if: ${{ matrix.extra == 'pandas-nightly' }}
