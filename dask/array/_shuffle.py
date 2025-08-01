@@ -209,6 +209,7 @@ def _shuffle(chunks, indexer, axis, in_name, out_name, token):
         new_chunks.append(current_chunk)
 
     chunk_boundaries = np.cumsum(chunks[axis])
+    print("chunk boundaries:", chunk_boundaries, chunk_boundaries.dtype)
 
     # Get existing chunk tuple locations
     chunk_tuples = list(
@@ -223,13 +224,16 @@ def _shuffle(chunks, indexer, axis, in_name, out_name, token):
     split_name_suffixes = count()
     sorter_name = "shuffle-sorter-"
     taker_name = "shuffle-taker-"
+    print("determined dtype:", dtype)
 
     old_blocks = {
         old_index: (in_name,) + old_index
         for old_index in np.ndindex(tuple([len(c) for c in chunks]))
     }
     for new_chunk_idx, new_chunk_taker in enumerate(new_chunks):
+        print("chunk taker:", new_chunk_taker)
         new_chunk_taker = np.array(new_chunk_taker)
+        print("chunk taker (arr):", new_chunk_taker, new_chunk_taker.dtype)
         sorter = np.argsort(new_chunk_taker).astype(dtype)
         sorter_key = None
 
