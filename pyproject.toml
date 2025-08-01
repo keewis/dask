@@ -47,7 +47,7 @@ dynamic = ["version"]
 [project.optional-dependencies]
 # NOTE: These are tested in `continuous_integration/test_imports.sh` If
 # you modify these, make sure to change the corresponding line there.
-array = ["numpy >= 1.25"]
+array = ["numpy >= 1.24"]
 # keeping for backwards compatibility
 bag = []
 dataframe = [
