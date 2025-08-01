@@ -607,8 +607,7 @@ def take(outname, inname, chunks, index, axis=0):
         full_length = int(sum(chunks[axis]))
         if (
             len(index) == full_length
-            and index[0] == 0
-            and np.abs(index - arange_safe(full_length, like=index)).sum() == 0
+            and np.abs(index - arange_safe(np.sum(chunks[axis]), like=index)).sum() == 0
         ):
             # TODO: This should be a real no-op, but the call stack is
             # too deep to do this efficiently for now
