@@ -1616,6 +1616,13 @@ def test_take_large():
     print(a[50:300].compute())
     assert_eq(actual, x)
 
+    x = np.arange(30, 200, 10, dtype="int64")
+    actual = da.take(a, x, axis=0)
+    print(x)
+    print(actual.compute())
+    print(a[30:200:10].compute())
+    assert_eq(actual, x)
+
 
 def test_take_dask_from_numpy():
     x = np.arange(5).astype("f8")
