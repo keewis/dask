@@ -620,7 +620,6 @@ def take(outname, inname, chunks, index, axis=0):
             return tuple(chunks), graph
 
         average_chunk_size = int(full_length / len(chunks[axis]))
-        print(average_chunk_size, int(np.sum(chunks[axis]) / len(chunks[axis])))
 
         indexer = []
         index = asarray_safe(index, like=index)
