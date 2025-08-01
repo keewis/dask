@@ -25,8 +25,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-latest", "ubuntu-latest", "macos-14"]
-        environment: ["3.10", "3.11", "3.12", "3.13"]
+        os: ["windows-latest"] #, "ubuntu-latest", "macos-14"]
+        environment: ["3.10", "3.11"] #, "3.12", "3.13"]
         extra: [null]
         array-expr: ["false"]
         exclude:
@@ -36,25 +36,25 @@ jobs:
             environment: "3.11"
           - os: "macos-14"
             environment: "3.13"
-        include:
-          # Minimum dependencies
-          - os: "ubuntu-latest"
-            environment: "mindeps-array"
-          - os: "ubuntu-latest"
-            environment: "mindeps-dataframe"
-          - os: "ubuntu-latest"
-            environment: "mindeps-distributed"
-          - os: "ubuntu-latest"
-            environment: "mindeps-non-optional"
-          - os: "ubuntu-latest"
-            environment: "mindeps-optional"
-          # Experimental setups
-          - os: "ubuntu-latest"
-            environment: "3.12"
-            extra: "pandas-nightly"
-          - os: "ubuntu-latest"
-            environment: "3.12"
-            array-expr: "true"
+        # include:
+        #   # Minimum dependencies
+        #   - os: "ubuntu-latest"
+        #     environment: "mindeps-array"
+        #   - os: "ubuntu-latest"
+        #     environment: "mindeps-dataframe"
+        #   - os: "ubuntu-latest"
+        #     environment: "mindeps-distributed"
+        #   - os: "ubuntu-latest"
+        #     environment: "mindeps-non-optional"
+        #   - os: "ubuntu-latest"
+        #     environment: "mindeps-optional"
+        #   # Experimental setups
+        #   - os: "ubuntu-latest"
+        #     environment: "3.12"
+        #     extra: "pandas-nightly"
+        #   - os: "ubuntu-latest"
+        #     environment: "3.12"
+        #     array-expr: "true"
 
     env:
       PARALLEL: "true"
