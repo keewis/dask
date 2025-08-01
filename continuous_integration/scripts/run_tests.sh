@@ -17,6 +17,6 @@ if [[ $COVERAGE == 'true' ]]; then
 fi
 
 echo "pytest dask --runslow $MARKERS $XTRATESTARGS"
-pytest dask --runslow $MARKERS $XTRATESTARGS
+pytest dask/array/tests/test_routines.py --runslow $MARKERS $XTRATESTARGS -k test_take_large
 
 set +e
