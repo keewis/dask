@@ -1602,25 +1602,15 @@ def test_take_large():
     a = da.arange(1_000_000_000_000, chunks=(200_000_000,), dtype="int64")
 
     x = np.arange(20, dtype="int64")
-
     actual = da.take(a, x, axis=0)
-    print(x)
-    print(actual.compute())
-    print(a[:20].compute())
     assert_eq(actual, x)
 
     x = np.arange(50, 300, dtype="int64")
     actual = da.take(a, x, axis=0)
-    print(x)
-    print(actual.compute())
-    print(a[50:300].compute())
     assert_eq(actual, x)
 
     x = np.arange(30, 200, 10, dtype="int64")
     actual = da.take(a, x, axis=0)
-    print(x)
-    print(actual.compute())
-    print(a[30:200:10].compute())
     assert_eq(actual, x)
 
 

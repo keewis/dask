@@ -606,9 +606,6 @@ def take(outname, inname, chunks, index, axis=0):
         # verify if this is a full arange (the equivalent of `slice(None)`)
         full_length = sum(chunks[axis])
         is_sequential = np.all(np.diff(index) == 1)
-        print(index, index.shape)
-        print([type(c) for c in chunks[axis]])
-        print(full_length, type(full_length), len(index), is_sequential)
         if len(index) == full_length and is_sequential and index[0] == 0:
             # TODO: This should be a real no-op, but the call stack is
             # too deep to do this efficiently for now
@@ -626,15 +623,12 @@ def take(outname, inname, chunks, index, axis=0):
         for i in range(0, len(index), average_chunk_size):
             indexer.append(index[i : i + average_chunk_size].tolist())
 
-        print("indexer:", indexer)
-
         token = (
             outname.split("-")[-1]
             if "-" in outname
             else tokenize(outname, chunks, index, axis)
         )
         chunks, graph = _shuffle(chunks, indexer, axis, inname, outname, token)
-        print(chunks)
         return chunks, graph
     elif len(chunks[axis]) == 1:
         slices = [slice(None)] * len(chunks)
