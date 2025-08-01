@@ -1604,12 +1604,14 @@ def test_take_large():
     x = np.arange(20, dtype="int64")
 
     actual = da.take(a, x, axis=0)
+    print(x)
     print(actual.compute())
     print(a[:20].compute())
     assert_eq(actual, x)
 
     x = np.arange(50, 300, dtype="int64")
     actual = da.take(a, x, axis=0)
+    print(x)
     print(actual.compute())
     print(a[50:300].compute())
     assert_eq(actual, x)
