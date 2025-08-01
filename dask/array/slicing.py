@@ -606,6 +606,8 @@ def take(outname, inname, chunks, index, axis=0):
         # verify if this is a full arange (the equivalent of `slice(None)`)
         full_length = sum(chunks[axis])
         is_sequential = np.all(np.diff(index) == 1)
+        print(index, index.shape)
+        print(full_length, len(index), is_sequential)
         if len(index) == full_length and is_sequential and index[0] == 0:
             # TODO: This should be a real no-op, but the call stack is
             # too deep to do this efficiently for now
